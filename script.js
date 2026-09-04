@@ -1,11 +1,6 @@
 (function () {
   'use strict';
 
-  /* ============================================
-     CONFIG
-     ============================================
-     Paste the Google Apps Script Web App URL here after deploying it.
-     See SETUP_INSTRUCTIONS.md for the full walkthrough.
   */
   const BOOKING_ENDPOINT = 'https://script.google.com/macros/s/AKfycbxWj4-3U4RxOR2KXvSzNhxylnRAm0UmplhyyA08WnM4v5ES_-O7BX9abn0ZOSZDL-Z5/exec';
 
@@ -97,12 +92,20 @@
   }
 
   function isValidEmail(value) {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+    if (value.indexOf(' ') !== -1) return false;
+    const atIndex = value.indexOf('@');
+    if (atIndex < 1 || atIndex !== value.lastIndexOf('@')) return false;
+    const domain = value.slice(atIndex + 1);
+    const dotIndex = domain.indexOf('.');
+    return dotIndex > 0 && dotIndex < domain.length - 1;
   }
 
   function isValidPhone(value) {
-    const digits = value.replace(/\D/g, '');
-    return digits.length >= 7;
+    let digitCount = 0;
+    for (let i = 0; i < value.length; i++) {
+      if (value[i] >= '0' && value[i] <= '9') digitCount++;
+    }
+    return digitCount >= 7;
   }
 
   function validateForm() {
