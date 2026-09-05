@@ -1,7 +1,10 @@
 (function () {
   'use strict';
 
-  
+  /* ============================================
+     CONFIG
+     ============================================
+  */
   const BOOKING_ENDPOINT = 'https://script.google.com/macros/s/AKfycbxWj4-3U4RxOR2KXvSzNhxylnRAm0UmplhyyA08WnM4v5ES_-O7BX9abn0ZOSZDL-Z5/exec';
 
   /* ============================================
